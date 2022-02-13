@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Tickets Online </title>
+</head>
+<body>
+    <h1>Book Tickets Online</h1>
+    <table>
+        <thead style="background-color: blue;color: white;">
+            <td>BUS ID </td>
+            <td>Departure Time</td>
+            <td>Destination</td>
+            <td>Seats-Available</td>
+            <td>Cost</td>
+        </thead>
+    
+        {%  for object in form1 %}
+        <tr>
+            <td>{{object.Bus_No}}</td>
+            <td>{{object.Departure_Time}}</td>
+            <td>{{object.Destinations}}</td>
+            <td>{{object.Seats_Available}}</td>    
+            <td>{{object.TicketCosts}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+        
+    {%if error%}
+    <h1>{{error}}</h1>
+    {%endif%}
+    <form method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" value="Submit">
+    </form>
+    {%if cost%}
+    <h1>Ticket cost is : {{cost}}</h1>
+    {%endif%}
+
+</body>
+</html>
